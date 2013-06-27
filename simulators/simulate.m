@@ -1,7 +1,6 @@
-%%Usage
-
 %Author: Iwan Smith
 
+%%Usage
 %Instead of piping the output of main.c into krackoutput, send it to a
 %file named out:
 %./main > out
