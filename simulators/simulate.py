@@ -7,3 +7,6 @@ send it to a file named out:
 
 Run this script in the same folder as the file out, and a window will pop up with an animation of the board.
 '''
+
+dataFile = open('out', 'r')
+
