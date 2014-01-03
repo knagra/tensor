@@ -15,7 +15,7 @@
 fid = fopen('out');
 
 picture_data = zeros(18,64,3);
-image_to_disp=zeros(24,48, 3);
+image_to_disp = zeros(24,48, 3);
 while 1==1;
     
     for panel = 1:18;
