@@ -33,7 +33,7 @@ blue_data = zeros( (18, 64) )
 
 red_image = zeros( (24, 48) )
 green_image = zeros( (24, 48) )
-blue_image = zeros (24, 48) )
+blue_image = zeros( (24, 48) )
 
 def pos(x):
   return (x * RADIUS * 2) + RADIUS
@@ -49,9 +49,10 @@ while 1:
     
   for panel in range(18):
     linedata = dataFile.readline()
-    red_data[panel, : ] = linedata[3:66]
-    green_data[panel, : ] = linedata[67:130]
-    blue_data[panel, : ] = linedata[131:194]
+    for char in range(64):
+      red_data[panel, char] = int(linedata[2+char], 16)
+      green_data[panel, char] = int(linedata[66+char], 16)
+      blue_data[panel, char] = int(linedata[130+char], 16)
     
   panel = 0
   for pan_hor in range(6):
