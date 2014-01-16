@@ -8,6 +8,9 @@ gcc main.c <pixel_color_implementation.c>
 
 Wait a few seconds to load up a bunch of lines to out.
 Run this script in the same folder as the file out, and a window will pop up with an animation of the board.
+
+You can supply a delay between each frame in seconds, if you choose.  Otherwise, there is no delay, and the
+program works as fast as PyGame can.
 '''
 
 import sys, pygame, time
