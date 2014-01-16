@@ -10,9 +10,14 @@ Wait a few seconds to load up a bunch of lines to out.
 Run this script in the same folder as the file out, and a window will pop up with an animation of the board.
 '''
 
-import sys, pygame
+import sys, pygame, time
 from numpy import *
 pygame.init()
+
+if len(sys.argv) < 2:
+  delay = 0
+else:
+  delay = float(sys.argv[1])
 
 dataFile = open('out', 'r')
 
@@ -53,8 +58,8 @@ while 1:
   for panel in range(18):
     linedata = dataFile.readline()
     for char in range(64):
-      red_data[panel, char] = int(linedata[2+char], 16)
-      green_data[panel, char] = int(linedata[66+char], 16)
+      green_data[panel, char] = int(linedata[2+char], 16)
+      red_data[panel, char] = int(linedata[66+char], 16)
       blue_data[panel, char] = int(linedata[130+char], 16)
     
   panel = 0
@@ -74,3 +79,4 @@ while 1:
   screen.blit(board, [0, 0])
   pygame.display.flip()
   frame = frame + 1
+  time.sleep(delay)
