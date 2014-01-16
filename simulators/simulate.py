@@ -67,7 +67,7 @@ while 1:
   
   for x in range(24):
     for y in range(48):
-      pygame.draw.circle(screen, true_color(red_image[x, y], green_image[x, y], blue_image[x, y]), [pos(x), pos(y)], RADIUS)
+      pygame.draw.circle(screen, true_color(red_image[x, y], green_image[x, y], blue_image[x, y]), [pos(y), pos(x)], RADIUS)
     
   pygame.display.flip()
   frame = frame + 1
