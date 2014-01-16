@@ -21,6 +21,7 @@ RADIUS = 5  # radius of each pixel; this is used to define the entire board and 
 size = width, height = RADIUS * 2 * 48, RADIUS * 2 * 24
 
 screen = pygame.display.set_mode(size)
+board = pygame.Surface(size)
 frame = 0
 
 BLACK = (  0,   0,   0)
@@ -44,7 +45,7 @@ def true_color(r, g, b):
   return (r * 16, g * 16, b * 16)
 
 while 1:
-  screen.fill(BLACK)
+  board.fill(BLACK)
   
   for event in pygame.event.get():
     if event.type == pygame.QUIT: sys.exit()
@@ -67,7 +68,9 @@ while 1:
   
   for x in range(24):
     for y in range(48):
-      pygame.draw.circle(screen, true_color(red_image[x, y], green_image[x, y], blue_image[x, y]), [pos(y), pos(x)], RADIUS)
+      pygame.draw.circle(board, true_color(red_image[x, y], green_image[x, y], blue_image[x, y]), [pos(y), pos(x)], RADIUS)
     
+  board = pygame.transform.rotate(board, 180)
+  screen.blit(board, [0, 0])
   pygame.display.flip()
   frame = frame + 1
