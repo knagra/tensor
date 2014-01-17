@@ -8,8 +8,10 @@ gcc main.c <pixel_color_implementation.c>
 
 Run this script in the same folder as the file out, and a window will pop up with an animation of the board.
 
-You can supply a delay between each frame in seconds, if you choose.  Otherwise, there is no delay, and the
-program works as fast as PyGame can.
+You can supply a delay between each frame in float seconds.  Otherwise, there is no delay, and the board is updated
+as fast as PyGame can update it.
+
+You can also supply a board-pixel radius in integer screen-pixels.
 '''
 
 import sys, pygame, time
@@ -18,12 +20,15 @@ pygame.init()
 
 if len(sys.argv) < 2:
   delay = 0
+  RADIUS = 5  # radius of each pixel; this is used to define the entire board and calculate position of pixels, etc.
+elif len(sys.argv) == 2:
+  delay = float(sys.argv[1])
+  RADIUS = 5
 else:
   delay = float(sys.argv[1])
+  RADIUS = int(sys.argv[2])
 
 dataFile = open('out', 'r')
-
-RADIUS = 5  # radius of each pixel; this is used to define the entire board and calculate position of pixels, etc.
 
 size = width, height = RADIUS * 2 * 48, RADIUS * 2 * 24
 
