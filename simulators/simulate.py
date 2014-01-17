@@ -32,27 +32,33 @@ dataFile = open('out', 'r')
 
 size = width, height = RADIUS * 2 * 48, RADIUS * 2 * 24
 
-screen = pygame.display.set_mode(size)
-board = pygame.Surface(size)
+screen = pygame.display.set_mode(size) # the window that will pop up
+board = pygame.Surface(size)  # a surface that covers the entire window; needed separate to rotate to correct orientation
 frame = 0
 
+#       (RED, GRN, BLU)
 BLACK = (  0,   0,   0)
 WHITE = (255, 255, 255)
 RED =   (255,   0,   0)
 GREEN = (  0, 255,   0)
 BLUE =  (  0,   0, 255)
 
+# arrays to hold each panel's pixel color intensities
 red_data = zeros( (18, 64) )
 green_data = zeros( (18, 64) )
 blue_data = zeros( (18, 64) )
 
+# arrays to hold the board's color intensities
 red_image = zeros( (24, 48) )
 green_image = zeros( (24, 48) )
 blue_image = zeros( (24, 48) )
 
+# return position in regard to RADIUS
+# Maps: x in 24 or 48 -> pos(x) in height or width (declared above)
 def pos(x):
   return (x * RADIUS * 2) + RADIUS
   
+# return true color by scaling to 266 full values from 16
 def true_color(r, g, b):
   return (r * 16, g * 16, b * 16)
 
@@ -64,12 +70,15 @@ while 1:
     
   for panel in range(18):
     linedata = dataFile.readline()
+    # First two chars in each line represent the board number
     for char in range(64):
-      green_data[panel, char] = int(linedata[2+char], 16)
-      red_data[panel, char] = int(linedata[66+char], 16)
-      blue_data[panel, char] = int(linedata[130+char], 16)
+      # All values have to be converted to ints from hex.
+      green_data[panel, char] = int(linedata[2+char], 16)   # Next 64 are green values
+      red_data[panel, char] = int(linedata[66+char], 16)    # Next 64 are red values
+      blue_data[panel, char] = int(linedata[130+char], 16)  # Next 64 are blue values
     
   panel = 0
+  # Map panel values to full board array:
   for pan_hor in range(6):
     for pan_ver in range(3):
       panel = pan_hor + (pan_ver * 6)
@@ -78,6 +87,7 @@ while 1:
         green_image[pan_ver*8+line, range(pan_hor*8, pan_hor*8+8)] = green_data[panel, range(line*8, line*8+8)]
         blue_image[pan_ver*8+line, range(pan_hor*8, pan_hor*8+8)] = blue_data[panel, range(line*8, line*8+8)]
   
+  # Draw each pixel on the board Surface.
   for x in range(24):
     for y in range(48):
       pygame.draw.circle(board, true_color(red_image[x, y], green_image[x, y], blue_image[x, y]), [pos(y), pos(x)], RADIUS)
