@@ -1,0 +1,16 @@
+The main.c file has an abstact function called pixel_color that provides the intensitity
+of the given color at the given pixel for the given frame.  Implement this function to
+use this convenience function.
+
+output_frame in main.c puts out lines representing each panel's RGB values.  The first
+two characters are the address of the panel being addressed.  The next 64 characters
+are the red values in hexadecimal; the next 64 are the green values in hexadecimal;
+and the final 64 are the blue values in hexadecimal.  So there should be 194 characters
+in total for each line.  The first two characters represent the panel number (between 13
+and 30 in hex), the next 64 represent the green values for the pixels on that panel, the
+next 64 represent the red values for the pixels on that panel, and the last 64 represent
+the blue values for that panel.
+
+
+x and y are indexed at the bottom right corner:  The top left pixel is (x = 47, y = 23)
+and the bottom right pixel is (x = 0, y = 0).
