@@ -3,16 +3,11 @@ of the given color at the given pixel for the given frame.  Implement this funct
 use this convenience function.
 
 output_frame in main.c puts out lines representing each panel's RGB values.  The first
-two characters are the address of the panel being addressed.  The next 64 characters
-are the green values in hexadecimal; the next 64 are the red values in hexadecimal;
-and the final 64 are the blue values in hexadecimal.  So there should be 194 characters
-in total for each line.
+two characters are the address of the panel being addressed (between 13 and 30 in hex,
+inclusive).  The next 64 characters are the green values in hexadecimal for that panel;
+the next 64 are the red values in hexadecimal for that panel; and the final 64 are the
+blue values in hexadecimal for that panel.  So there should be 194 characters in total
+for each line.
 
-Again: The first two characters represent the panel number (between 13
-and 30 in hex), the next 64 represent the green values for the pixels on that panel, the
-next 64 represent the red values for the pixels on that panel, and the last 64 represent
-the blue values for that panel.
-
-
-x and y are indexed at the bottom right corner:  The top left pixel is (x = 47, y = 23)
-and the bottom right pixel is (x = 0, y = 0).
+For the entire board, x and y are indexed at the bottom right corner:  The top left pixel
+is (x = 47, y = 23) and the bottom right pixel is (x = 0, y = 0).
